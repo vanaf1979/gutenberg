@@ -3,10 +3,6 @@
 	flex-direction: row;
 }
 
-.block-editor-block-mover__description {
-	display: none;
-}
-
 .block-editor-block-mover__control.has-icon {
 	padding: 0;
 }
@@ -26,7 +22,7 @@
 	}
 
 	// Position the icons correctly.
-	.components-toolbar .block-editor-block-mover__control-up {
+	.components-toolbar .block-editor-block-mover.is-up-button {
 		svg {
 			margin-bottom: -$grid-unit-10;
 		}
@@ -38,7 +34,7 @@
 		}
 	}
 
-	.components-toolbar .block-editor-block-mover__control-down {
+	.components-toolbar .block-editor-block-mover.is-down-button {
 		svg {
 			margin-top: -$grid-unit-10;
 		}
@@ -52,7 +48,7 @@
 
 	// Mover is horizontal.
 	&.is-horizontal {
-		.block-editor-block-mover__control.has-icon {
+		.block-editor-block-mover-button.has-icon {
 			height: $block-toolbar-height;
 			width: $block-toolbar-height/2 !important;
 			min-width: $grid-unit-30;
@@ -70,7 +66,7 @@
 		}
 
 		// Position the icons correctly.
-		.block-editor-block-mover__control-up.has-icon {
+		.block-editor-block-mover.is-up-button.has-icon {
 			svg {
 				margin-left: 0;
 				margin-right: -$grid-unit-10;
@@ -84,7 +80,7 @@
 			}
 		}
 
-		.block-editor-block-mover__control-down.has-icon {
+		.block-editor-block-mover.is-down-button.has-icon {
 			svg {
 				margin-left: -$grid-unit-10;
 				margin-right: 0;
@@ -111,4 +107,8 @@
 			}
 		}
 	}
+}
+
+.block-editor-block-mover-button__description {
+	display: none;
 }
