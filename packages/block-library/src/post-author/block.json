@@ -1,4 +1,5 @@
 {
 	"name": "core/post-author",
-	"category": "layout"
+	"category": "layout",
+	"context": [ "postId" ]
 }

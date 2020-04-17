@@ -8,14 +8,16 @@
 /**
  * Renders the `core/post-featured-image` block on the server.
  *
+ * @param WP_Block $block Block instance.
+ *
  * @return string Returns the featured image for the current post.
  */
-function render_block_core_post_featured_image() {
-	$post = gutenberg_get_post_from_context();
-	if ( ! $post ) {
+function render_block_core_post_featured_image( $block ) {
+	if ( ! isset( $block->context['postId'] ) ) {
 		return '';
 	}
-	return '<p>' . get_the_post_thumbnail( $post ) . '</p>';
+
+	return '<p>' . get_the_post_thumbnail( $block->context['postId'] ) . '</p>';
 }
 
 /**

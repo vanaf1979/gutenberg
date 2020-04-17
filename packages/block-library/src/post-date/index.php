@@ -8,18 +8,18 @@
 /**
  * Renders the `core/post-date` block on the server.
  *
- * @param array $attributes The block attributes.
+ * @param WP_Block $block Block instance.
  *
  * @return string Returns the filtered post date for the current post wrapped inside "time" tags.
  */
-function render_block_core_post_date( $attributes ) {
-	$post = gutenberg_get_post_from_context();
-	if ( ! $post ) {
+function render_block_core_post_date( $block ) {
+	if ( ! isset( $block->context['postId'] ) ) {
 		return '';
 	}
+
 	return '<time datetime="'
-		. get_the_date( 'c', $post ) . '">'
-		. get_the_date( isset( $attributes['format'] ) ? $attributes['format'] : '', $post )
+		. get_the_date( 'c', $block->context['postId'] ) . '">'
+		. get_the_date( isset( $block->attributes['format'] ) ? $block->attributes['format'] : '', $block->context['postId'] )
 		. '</time>';
 }
 
