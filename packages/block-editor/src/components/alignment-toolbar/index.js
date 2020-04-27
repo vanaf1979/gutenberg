@@ -51,12 +51,17 @@ export function AlignmentToolbar( props ) {
 		( control ) => control.align === value
 	);
 
+	const hasActive = alignmentControls.some(
+		( { align } ) => align === value
+	);
+
 	return (
 		<Toolbar
 			isCollapsed={ isCollapsed }
 			icon={ activeAlignment ? activeAlignment.icon : alignLeft }
 			label={ label }
 			popoverProps={ POPOVER_PROPS }
+			toggleProps={ hasActive ? { className: 'is-pressed' } : undefined }
 			controls={ alignmentControls.map( ( control ) => {
 				const { align } = control;
 				const isActive = value === align;
