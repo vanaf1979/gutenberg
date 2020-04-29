@@ -7,7 +7,12 @@ import { isNil, map, omitBy } from 'lodash';
  * WordPress dependencies
  */
 import { Slot, Fill } from '@wordpress/components';
-import { Children, cloneElement, useContext } from '@wordpress/element';
+import {
+	Children,
+	cloneElement,
+	useContext,
+	createContext,
+} from '@wordpress/element';
 
 /**
  * Internal dependencies
@@ -16,17 +21,21 @@ import ListItem from './list-item';
 import ButtonBlockAppender from '../button-block-appender';
 import { BlockListBlockContext } from '../block-list/block';
 
+export const BlockNavigationContext = createContext( {
+	useBlockNavigationSlots: true,
+} );
+
 export default function BlockNavigationList( {
 	blocks,
 	selectedBlockClientId,
 	selectBlock,
 	showAppender,
-	withSlots,
 
 	// Internal use only.
 	showNestedBlocks,
 	parentBlockClientId,
 } ) {
+	const { useBlockNavigationSlots } = useContext( BlockNavigationContext );
 	const shouldShowAppender = showAppender && !! parentBlockClientId;
 
 	return (
@@ -41,7 +50,7 @@ export default function BlockNavigationList( {
 				return (
 					<li key={ block.clientId }>
 						<ListItemWrapper
-							withSlots={ withSlots }
+							withSlot={ useBlockNavigationSlots }
 							block={ block }
 							isSelected={ isSelected }
 							onClick={ () => selectBlock( block.clientId ) }
@@ -55,7 +64,6 @@ export default function BlockNavigationList( {
 									selectedBlockClientId={
 										selectedBlockClientId
 									}
-									withSlots={ withSlots }
 									selectBlock={ selectBlock }
 									parentBlockClientId={ block.clientId }
 									showAppender={ showAppender }
@@ -82,11 +90,10 @@ export default function BlockNavigationList( {
 
 BlockNavigationList.defaultProps = {
 	selectBlock: () => {},
-	withSlots: true,
 };
 
-const ListItemWrapper = ( { withSlots, ...props } ) => {
-	if ( ! withSlots ) {
+const ListItemWrapper = ( { withSlot, ...props } ) => {
+	if ( ! withSlot ) {
 		return <ListItem { ...props } />;
 	}
 

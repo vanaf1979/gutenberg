@@ -21,7 +21,6 @@ function BlockNavigation( {
 	rootBlocks,
 	selectedBlockClientId,
 	selectBlock,
-	withSlots,
 } ) {
 	if ( ! rootBlocks || rootBlocks.length === 0 ) {
 		return null;
@@ -45,7 +44,6 @@ function BlockNavigation( {
 					blocks={ [ rootBlock ] }
 					selectedBlockClientId={ selectedBlockClientId }
 					selectBlock={ selectBlock }
-					withSlots={ withSlots }
 					showNestedBlocks
 				/>
 			) }
@@ -54,16 +52,11 @@ function BlockNavigation( {
 					blocks={ rootBlocks }
 					selectedBlockClientId={ selectedBlockClientId }
 					selectBlock={ selectBlock }
-					withSlots={ withSlots }
 				/>
 			) }
 		</NavigableMenu>
 	);
 }
-
-BlockNavigation.defaultProps = {
-	withSlots: true,
-};
 
 export default compose(
 	withSelect( ( select ) => {
