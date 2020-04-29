@@ -16,6 +16,7 @@ export default function NavigationStructurePanel( { blocks, initialOpen } ) {
 					<__experimentalBlockNavigationList
 						blocks={ blocks }
 						selectedBlockClientId={ blocks[ 0 ].clientId }
+						selectBlock={ () => {} }
 						showNestedBlocks
 						showAppender
 					/>
