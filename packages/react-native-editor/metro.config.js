@@ -2,7 +2,10 @@ const path = require( 'path' );
 const enm = require( './extra-node-modules.config.js' );
 
 module.exports = {
-	watchFolders: [ path.resolve( __dirname, '../..' ) ],
+	watchFolders: [
+		path.resolve( __dirname, '../..' ),
+		path.resolve( __dirname, '../../node_modules' ),
+	],
 	resolver: {
 		sourceExts: [ 'js', 'json', 'scss', 'sass', 'ts', 'tsx' ],
 		extraNodeModules: enm,
