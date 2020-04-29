@@ -19,6 +19,8 @@ import {
 import { Button } from '@wordpress/components';
 import { plus } from '@wordpress/icons';
 
+const blockNavigationContext = { useBlockNavigationSlots: false };
+
 function HeaderToolbar( { onToggleInserter, isInserterOpen } ) {
 	const {
 		hasFixedToolbar,
@@ -78,9 +80,7 @@ function HeaderToolbar( { onToggleInserter, isInserterOpen } ) {
 			<EditorHistoryUndo />
 			<EditorHistoryRedo />
 			<TableOfContents hasOutlineItemsDisabled={ isTextModeEnabled } />
-			<BlockNavigationContext.Provider
-				value={ { useBlockNavigationSlots: false } }
-			>
+			<BlockNavigationContext.Provider value={ blockNavigationContext }>
 				<BlockNavigationDropdown isDisabled={ isTextModeEnabled } />
 			</BlockNavigationContext.Provider>
 			{ displayBlockToolbar && (
