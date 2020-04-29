@@ -17,7 +17,7 @@ export { default as BlockIcon } from './block-icon';
 export { default as BlockNavigationDropdown } from './block-navigation/dropdown';
 export {
 	default as __experimentalBlockNavigationList,
-	ListItemFill as __experimentalBlockNavigationListItemFill
+	ListItemFill as __experimentalBlockNavigationListItemFill,
 } from './block-navigation/list';
 export { default as __experimentalBlockNavigationListItem } from './block-navigation/list-item';
 export { default as __experimentalBlockVariationPicker } from './block-variation-picker';

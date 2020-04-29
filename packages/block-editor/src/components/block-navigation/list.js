@@ -6,8 +6,8 @@ import { isNil, map, omitBy } from 'lodash';
 /**
  * WordPress dependencies
  */
-import { Slot, Fill } from "@wordpress/components";
-import { Children, cloneElement } from "@wordpress/element";
+import { Slot, Fill } from '@wordpress/components';
+import { Children, cloneElement } from '@wordpress/element';
 
 /**
  * Internal dependencies
@@ -17,14 +17,19 @@ import ButtonBlockAppender from '../button-block-appender';
 
 const listItemSlotName = ( blockId ) => `BlockNavigationList-item-${ blockId }`;
 
-export const ListItemSlot = ( { blockId, ...props } ) => <Slot { ...props } name={ listItemSlotName( blockId ) }/>;
-export const ListItemFill = ( { blockId, ...props } ) => <Fill { ...props } name={ listItemSlotName( blockId ) }/>;
+export const ListItemSlot = ( { blockId, ...props } ) => (
+	<Slot { ...props } name={ listItemSlotName( blockId ) } />
+);
+export const ListItemFill = ( { blockId, ...props } ) => (
+	<Fill { ...props } name={ listItemSlotName( blockId ) } />
+);
 
 export default function BlockNavigationList( {
 	blocks,
 	selectedBlockClientId,
-	onItemClick,
+	selectBlock,
 	showAppender,
+	withSlots,
 
 	// Internal use only.
 	showNestedBlocks,
@@ -44,15 +49,27 @@ export default function BlockNavigationList( {
 				const itemProps = {
 					block,
 					isSelected,
-					onClick: () => onItemClick( block.clientId )
+					onClick: () => selectBlock( block.clientId ),
 				};
+				const defaultListItem = <ListItem { ...itemProps } />;
 				return (
 					<li key={ block.clientId }>
-						<ListItemSlot blockId={ block.clientId }>
-							{ ( fills ) => fills.length
-								? Children.map( fills, fill => cloneElement( fill, itemProps ) )
-								: ( <ListItem { ...itemProps } key="item1" /> ) }
-						</ListItemSlot>
+						{ withSlots ? (
+							<ListItemSlot blockId={ block.clientId }>
+								{ ( fills ) =>
+									fills.length
+										? Children.map( fills, ( fill ) =>
+												cloneElement( fill, {
+													...itemProps,
+													...fill.props,
+												} )
+										  )
+										: defaultListItem
+								}
+							</ListItemSlot>
+						) : (
+							defaultListItem
+						) }
 
 						{ showNestedBlocks &&
 							!! block.innerBlocks &&
@@ -62,7 +79,8 @@ export default function BlockNavigationList( {
 									selectedBlockClientId={
 										selectedBlockClientId
 									}
-									onItemClick={ onItemClick }
+									withSlots={ withSlots }
+									selectBlock={ selectBlock }
 									parentBlockClientId={ block.clientId }
 									showAppender={ showAppender }
 									showNestedBlocks
@@ -87,5 +105,6 @@ export default function BlockNavigationList( {
 }
 
 BlockNavigationList.defaultProps = {
-	onItemClick: () => {}
+	selectBlock: () => {},
+	withSlots: true,
 };

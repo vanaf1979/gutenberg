@@ -39,7 +39,9 @@ export default function BlockNavigationListItem( {
 				onClick={ onClick }
 			>
 				<BlockIcon icon={ blockType.icon } showColors />
-				{ children ? children : getBlockLabel( blockType, block.attributes ) }
+				{ children
+					? children
+					: getBlockLabel( blockType, block.attributes ) }
 				{ isSelected && (
 					<VisuallyHidden as="span">
 						{ __( '(selected block)' ) }

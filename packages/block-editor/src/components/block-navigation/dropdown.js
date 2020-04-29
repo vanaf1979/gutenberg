@@ -71,7 +71,7 @@ function BlockNavigationDropdown( { isDisabled } ) {
 				/>
 			) }
 			renderContent={ ( { onClose } ) => (
-				<BlockNavigation onSelect={ onClose } />
+				<BlockNavigation onSelect={ onClose } withSlots={ false } />
 			) }
 		/>
 	);

@@ -33,7 +33,13 @@ import {
 	__experimentalBlockNavigationListItem as BlockNavigationListItem,
 } from '@wordpress/block-editor';
 import { isURL, prependHTTP } from '@wordpress/url';
-import { Fragment, useState, useEffect, useRef, cloneElement } from '@wordpress/element';
+import {
+	Fragment,
+	useState,
+	useEffect,
+	useRef,
+	cloneElement,
+} from '@wordpress/element';
 import { placeCaretAtHorizontalEdge } from '@wordpress/dom';
 import { link as linkIcon } from '@wordpress/icons';
 
@@ -41,6 +47,8 @@ import { link as linkIcon } from '@wordpress/icons';
  * Internal dependencies
  */
 import { ToolbarSubmenuIcon, ItemSubmenuIcon } from './icons';
+
+const noop = () => {};
 
 function NavigationLinkEdit( {
 	attributes,
@@ -216,8 +224,11 @@ function NavigationLinkEdit( {
 				</PanelBody>
 			</InspectorControls>
 			<BlockNavigationListItemFill blockId={ clientId }>
-				<BlockNavigationListItem wrapperComponent="div">
-					{editField}
+				<BlockNavigationListItem
+					wrapperComponent="div"
+					onClick={ noop }
+				>
+					{ editField }
 				</BlockNavigationListItem>
 			</BlockNavigationListItemFill>
 			<Block.li
