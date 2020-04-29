@@ -7,22 +7,24 @@ import { isNil, map, omitBy } from 'lodash';
  * WordPress dependencies
  */
 import { Slot, Fill } from '@wordpress/components';
-import { Children, cloneElement } from '@wordpress/element';
+import { Children, cloneElement, useContext } from '@wordpress/element';
 
 /**
  * Internal dependencies
  */
 import ListItem from './list-item';
 import ButtonBlockAppender from '../button-block-appender';
+import { BlockListBlockContext } from '../block-list/block';
 
 const listItemSlotName = ( blockId ) => `BlockNavigationList-item-${ blockId }`;
 
 export const ListItemSlot = ( { blockId, ...props } ) => (
 	<Slot { ...props } name={ listItemSlotName( blockId ) } />
 );
-export const ListItemFill = ( { blockId, ...props } ) => (
-	<Fill { ...props } name={ listItemSlotName( blockId ) } />
-);
+export const ListItemFill = ( props ) => {
+	const { clientId } = useContext( BlockListBlockContext );
+	return <Fill { ...props } name={ listItemSlotName( clientId ) } />;
+};
 
 export default function BlockNavigationList( {
 	blocks,

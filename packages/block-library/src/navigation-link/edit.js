@@ -52,7 +52,6 @@ const noop = () => {};
 
 function NavigationLinkEdit( {
 	attributes,
-	clientId,
 	hasDescendants,
 	isSelected,
 	isParentOfSelectedBlock,
@@ -223,7 +222,7 @@ function NavigationLinkEdit( {
 					/>
 				</PanelBody>
 			</InspectorControls>
-			<BlockNavigationListItemFill blockId={ clientId }>
+			<BlockNavigationListItemFill>
 				<BlockNavigationListItem
 					wrapperComponent="div"
 					onClick={ noop }
