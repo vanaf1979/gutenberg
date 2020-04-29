@@ -39,7 +39,6 @@ export default function MenuEditor( { menuId, blockEditorSettings } ) {
 				<NavigationStructurePanel
 					blocks={ blocks }
 					initialOpen={ isLargeViewport }
-					onChange={ ( updatedBlocks ) => setBlocks( updatedBlocks ) }
 				/>
 				<BlockEditorPanel saveBlocks={ saveBlocks } />
 			</BlockEditorProvider>
