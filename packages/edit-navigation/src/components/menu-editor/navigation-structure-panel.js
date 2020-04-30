@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { __experimentalBlockNavigationList } from '@wordpress/block-editor';
+import { __experimentalBlockNavigationGrid } from '@wordpress/block-editor';
 import { Panel, PanelBody } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -13,12 +13,13 @@ export default function NavigationStructurePanel( { blocks, initialOpen } ) {
 				initialOpen={ initialOpen }
 			>
 				{ !! blocks.length && (
-					<__experimentalBlockNavigationList
+					<__experimentalBlockNavigationGrid
 						blocks={ blocks }
 						selectedBlockClientId={ blocks[ 0 ].clientId }
 						selectBlock={ () => {} }
 						showNestedBlocks
 						showAppender
+						showBlockMovers
 					/>
 				) }
 			</PanelBody>
