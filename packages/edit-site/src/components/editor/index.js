@@ -23,6 +23,7 @@ import {
 } from '@wordpress/block-editor';
 import { useViewportMatch } from '@wordpress/compose';
 import { FullscreenMode, InterfaceSkeleton } from '@wordpress/interface';
+import { PluginArea } from '@wordpress/plugins';
 
 /**
  * Internal dependencies
@@ -97,6 +98,7 @@ function Editor( { settings: _settings } ) {
 										footer={ <BlockBreadcrumb /> }
 									/>
 									<Popover.Slot />
+									<PluginArea />
 								</FocusReturnProvider>
 							</Context.Provider>
 						</EntityProvider>
